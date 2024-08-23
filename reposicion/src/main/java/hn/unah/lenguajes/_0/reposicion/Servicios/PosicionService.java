@@ -25,16 +25,17 @@ public class PosicionService {
 
     public String simularPartidos() {
     List<Equipo> equipos = equipoRepository.findAll();
-    if (equipos.size() < 6) {
-        // Creacion de equipos de manera automatica
-        for (int i = equipos.size(); i < 6; i++) {
-            Equipo nuevoEquipo = new Equipo();
-            nuevoEquipo.setNombre("Equipo" + (i + 1));
-            nuevoEquipo.setAtaque(Math.random() * 10);
-            nuevoEquipo.setDefensa(Math.random() * 10);
-            equipoRepository.save(nuevoEquipo);
+        if (equipos.size() < 6) {
+            // Creacion de equipos de manera automatica
+            for (int i = equipos.size(); i < 6; i++) {
+                Equipo nuevoEquipo = new Equipo();
+                nuevoEquipo.setNombre("Equipo" + (i + 1));
+                nuevoEquipo.setAtaque(Math.random() * 10);
+                nuevoEquipo.setDefensa(Math.random() * 10);
+                equipoRepository.save(nuevoEquipo);
+            }
+            equipos = equipoRepository.findAll();
         }
-        equipos = equipoRepository.findAll();
     }
 
     for (int i = 0; i < equipos.size(); i++) {
@@ -62,7 +63,6 @@ public class PosicionService {
         if (golesFavor > golesContra) {
             posicion.setGanados(posicion.getGanados() + 1);
         }
-        return null;
 
     }
 
